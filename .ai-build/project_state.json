@@ -149,7 +149,7 @@
   "lastDesignChecklistFile": null,
   "lastClaudeReviewFile": null,
   "lastFinalDecisionFile": null,
-  "updatedAt": "2026-05-17T22:50:13.657Z",
+  "updatedAt": "2026-05-17T22:53:26.730Z",
   "localPath": "/home/ubuntu/ai-builds/lead-revive-test-12",
   "lastActiveBuild": {
     "feature": "FEATURE_007",
@@ -159,5 +159,13 @@
   "supabase": {
     "projectRef": "nkbmykjqnpdfqazzxlft",
     "connectedAt": "2026-05-17T22:50:13.657Z"
+  },
+  "database": {
+    "plannedMigration": null,
+    "plannedAt": "2026-05-17T22:50:21.047Z",
+    "sharedDevDatabase": true,
+    "sharedMigration": "supabase/migrations/20260517212842_create_leads_table.sql",
+    "note": "Using shared ai-builder-test Supabase leads table instead of creating a duplicate leads table.",
+    "updatedAt": "2026-05-17T22:53:26.730Z"
   }
 }
