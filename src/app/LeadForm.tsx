@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { getSupabaseBrowserClient } from "@/lib/supabaseClient";
 
 type Errors = {
   name?: string;
@@ -49,22 +50,23 @@ export default function LeadForm() {
 
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone, message }),
+      const supabase = getSupabaseBrowserClient();
+      const trimmedPhone = phone.trim();
+      const trimmedMessage = message.trim();
+
+      const { error } = await supabase.from("leads").insert({
+        full_name: name.trim(),
+        email: email.trim(),
+        phone: trimmedPhone ? trimmedPhone : null,
+        interest_type: "not_sure",
+        message: trimmedMessage ? trimmedMessage : null,
+        source: "website",
       });
 
-      if (!response.ok) {
-        let errorMessage =
-          "Something went wrong. Please try again in a moment.";
-        try {
-          const data = (await response.json()) as { error?: string };
-          if (data?.error) errorMessage = data.error;
-        } catch {
-          // fall through with the default error message
-        }
-        setSubmitError(errorMessage);
+      if (error) {
+        setSubmitError(
+          "We couldn't save your request right now. Please try again in a moment.",
+        );
         return;
       }
 

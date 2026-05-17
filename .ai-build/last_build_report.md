@@ -1,37 +1,51 @@
-# Build Report — FEATURE_007: Optional backend lead storage
+# Build Report — Connect lead form to Supabase (direct from client)
 
 **Status:** complete
 **Date:** 2026-05-17
 
 ## Summary
-Connected the lead capture form to Supabase via a server-side Route Handler. The frontend now POSTs JSON to `/api/leads`, which validates the payload and inserts a row into `public.leads` using the service role key (which never leaves the server).
-
-## Files added
-- `src/app/api/leads/route.ts` — server-only POST handler. Validates name + email format, instantiates a Supabase client from `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY`, inserts into `leads`, and returns JSON responses with appropriate HTTP statuses (400 / 503 / 500 / 201).
-- `supabase/schema.sql` — SQL to provision the `leads` table (id, created_at, name, email, phone, message) with RLS enabled so only the service role can read/write.
-- `.env.example` — documents the two required env vars (server-side only, no `NEXT_PUBLIC_` prefix).
+Replaced the old server-route lead pipeline (which used the service role key
+and the old `name` column) with a direct browser → Supabase insert that uses
+the public anon key and the current `public.leads` schema. The form's existing
+validation and success state are preserved.
 
 ## Files changed
-- `src/app/LeadForm.tsx` — `handleSubmit` now `fetch`es `/api/leads`. Added `isSubmitting` loading state (button shows "Sending…" and is disabled) and a `submitError` UI block that surfaces server error messages. The existing success state is unchanged.
-- `package.json` — added `@supabase/supabase-js` dependency.
+- `src/lib/supabaseClient.ts` — **new.** Lazy singleton browser Supabase client
+  built from `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+  Never references the service role key.
+- `src/app/LeadForm.tsx` — replaced `fetch("/api/leads")` with
+  `supabase.from("leads").insert(...)`. Maps fields to the current schema:
+  - `full_name` ← form name
+  - `email` ← form email
+  - `phone` ← form phone (empty → `null`)
+  - `interest_type` ← `"not_sure"` (form does not collect; value satisfies the
+    `check (interest_type in ('buying','selling','both','not_sure'))` constraint)
+  - `message` ← form message (empty → `null`)
+  - `source` ← `"website"`
+  Client-side validation, success UI, and the non-technical error UI are
+  unchanged. On any insert error we surface
+  *"We couldn't save your request right now. Please try again in a moment."*
+- `.env.example` — now documents the `NEXT_PUBLIC_SUPABASE_URL` /
+  `NEXT_PUBLIC_SUPABASE_ANON_KEY` pair actually used.
 
-## Done-when checklist
-- [x] Supabase project details configured through environment variables (`SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`).
-- [x] Leads table schema provided (`supabase/schema.sql`) with the approved fields only (name, email, phone, message + id/created_at).
-- [x] Valid form submissions POST to `/api/leads` and are inserted via the Supabase client.
-- [x] Success message remains; new error UI surfaces failures with a clear message.
-- [x] No secrets exposed in the frontend — the service role key is read only inside the route handler. No `NEXT_PUBLIC_*` Supabase vars exist.
+## Files removed
+- `src/app/api/leads/route.ts` (and the now-empty `src/app/api/` directory) —
+  the route depended on `SUPABASE_SERVICE_ROLE_KEY` (no longer in
+  `.env.local`) and wrote to the old `name` column. Direct client inserts
+  replace it, gated by the existing
+  `"Allow public lead inserts"` RLS policy.
 
-## Constraints respected
-- No hardcoded keys.
-- No auth, CRM dashboard, or automated emails.
-- No new routes beyond the single API endpoint required to persist a lead.
+## Dependencies
+- `@supabase/supabase-js@^2.105.4` was already in `package.json` and
+  installed. No install was required.
+
+## Security
+- Only `NEXT_PUBLIC_*` keys are used in browser code.
+- No service role key is referenced anywhere in the project.
+- Inserts are limited by RLS to the `anon` role's insert-only policy on
+  `public.leads`.
 
 ## Verification
-- `npm run build` passes (Next.js 16.2.6, Turbopack). TypeScript clean. `/` remains static; `/api/leads` is correctly marked dynamic.
-- Without env vars set, the route returns a 503 with a user-friendly message — the form gracefully shows the error instead of falsely confirming success.
-
-## Operator setup (one-time)
-1. Create a Supabase project.
-2. Run `supabase/schema.sql` in the SQL editor.
-3. Set `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` in the deployment environment (e.g. `vercel env add`).
+- `npm run build` succeeds (Next.js 16.2.6, Turbopack). TypeScript clean.
+  Static routes generated: `/`, `/_not-found`.
+- Browser flow not exercised in this run (no dev server started).
