@@ -30,6 +30,7 @@ export default function LeadForm() {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [succeeded, setSucceeded] = useState(false);
 
   const showError = (field: keyof Errors) =>
     submitted ? errors[field] : undefined;
@@ -42,7 +43,64 @@ export default function LeadForm() {
     if (Object.keys(nextErrors).length > 0) {
       return;
     }
-    // Successful validation — FEATURE_004 will handle the success state.
+    setName("");
+    setEmail("");
+    setPhone("");
+    setMessage("");
+    setErrors({});
+    setSubmitted(false);
+    setSucceeded(true);
+  }
+
+  function handleSendAnother() {
+    setSucceeded(false);
+  }
+
+  if (succeeded) {
+    return (
+      <div
+        role="status"
+        aria-live="polite"
+        className="mt-10 w-full max-w-xl rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-left shadow-sm dark:border-emerald-900 dark:bg-emerald-950/40 sm:p-8"
+      >
+        <div className="flex items-start gap-4">
+          <span
+            aria-hidden="true"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white dark:bg-emerald-500"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-5 w-5"
+            >
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </span>
+          <div>
+            <h3 className="text-lg font-semibold text-emerald-900 dark:text-emerald-100">
+              Thanks — your request is in.
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-emerald-900/80 dark:text-emerald-100/80">
+              A real estate specialist will follow up with you within one
+              business day to walk through your free follow-up plan. Keep an eye
+              on your email and phone.
+            </p>
+            <button
+              type="button"
+              onClick={handleSendAnother}
+              className="mt-5 inline-flex h-10 items-center justify-center rounded-full border border-emerald-700/40 bg-white px-5 text-sm font-medium text-emerald-900 transition-colors hover:bg-emerald-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 dark:border-emerald-400/40 dark:bg-emerald-900/40 dark:text-emerald-50 dark:hover:bg-emerald-900/70"
+            >
+              Submit another request
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   const inputBaseClasses =
