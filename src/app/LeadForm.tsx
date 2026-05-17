@@ -31,25 +31,57 @@ export default function LeadForm() {
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
   const [succeeded, setSucceeded] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const showError = (field: keyof Errors) =>
     submitted ? errors[field] : undefined;
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const nextErrors = validate({ name, email });
     setErrors(nextErrors);
     setSubmitted(true);
+    setSubmitError(null);
     if (Object.keys(nextErrors).length > 0) {
       return;
     }
-    setName("");
-    setEmail("");
-    setPhone("");
-    setMessage("");
-    setErrors({});
-    setSubmitted(false);
-    setSucceeded(true);
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, phone, message }),
+      });
+
+      if (!response.ok) {
+        let errorMessage =
+          "Something went wrong. Please try again in a moment.";
+        try {
+          const data = (await response.json()) as { error?: string };
+          if (data?.error) errorMessage = data.error;
+        } catch {
+          // fall through with the default error message
+        }
+        setSubmitError(errorMessage);
+        return;
+      }
+
+      setName("");
+      setEmail("");
+      setPhone("");
+      setMessage("");
+      setErrors({});
+      setSubmitted(false);
+      setSucceeded(true);
+    } catch {
+      setSubmitError(
+        "We couldn't reach the server. Please check your connection and try again.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   function handleSendAnother() {
@@ -231,11 +263,21 @@ export default function LeadForm() {
         </div>
       </div>
 
+      {submitError ? (
+        <p
+          role="alert"
+          className="mt-5 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-200"
+        >
+          {submitError}
+        </p>
+      ) : null}
+
       <button
         type="submit"
-        className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-full bg-blue-600 px-8 text-base font-semibold text-white shadow-md shadow-blue-600/20 transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 dark:shadow-blue-500/20 dark:focus-visible:ring-offset-slate-900"
+        disabled={isSubmitting}
+        className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-full bg-blue-600 px-8 text-base font-semibold text-white shadow-md shadow-blue-600/20 transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70 dark:shadow-blue-500/20 dark:focus-visible:ring-offset-slate-900"
       >
-        Request my consultation
+        {isSubmitting ? "Sending…" : "Request my consultation"}
       </button>
       <p className="mt-3 text-center text-xs text-slate-500 dark:text-slate-400">
         Takes under a minute · We&apos;ll never spam you
