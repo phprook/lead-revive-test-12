@@ -1,6 +1,6 @@
--- Create leads table for active project.
--- Safe V1 migration: creates table and insert policy only.
--- Does not drop or delete any data.
+-- Shared dev database migration.
+-- This file mirrors the existing ai-builder-test leads table migration.
+-- It is reused by test projects so we do not create duplicate leads tables.
 
 create table if not exists public.leads (
   id uuid primary key default gen_random_uuid(),
