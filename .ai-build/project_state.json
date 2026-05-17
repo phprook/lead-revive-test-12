@@ -1,0 +1,154 @@
+{
+  "projectName": "lead-revive-test-12",
+  "projectIdea": "Build a simple real estate lead follow-up landing page with a headline, short explanation, lead form, and clear call to action",
+  "status": "plan_approved_ready_for_feature_001",
+  "currentFeatureIndex": 0,
+  "features": [
+    {
+      "id": "FEATURE_001",
+      "name": "Basic landing page shell",
+      "goal": "Create the first public real estate lead follow-up landing page with a clear hero section and call to action.",
+      "done_when": [
+        "Homepage loads successfully",
+        "Page has a strong real estate-focused headline",
+        "Page has a short explanation of what the visitor should do",
+        "Page has a visible primary call-to-action area",
+        "Layout works on desktop and mobile at a basic level"
+      ],
+      "do_not_do": [
+        "Do not add a working lead form yet",
+        "Do not add backend storage",
+        "Do not add login",
+        "Do not add dashboard",
+        "Do not add extra pages"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "FEATURE_002",
+      "name": "Lead capture form UI",
+      "goal": "Add a simple lead form to collect visitor contact information.",
+      "done_when": [
+        "Form appears clearly on the landing page",
+        "Form includes full name field",
+        "Form includes email field",
+        "Form includes phone field",
+        "Form includes an optional message or interest field",
+        "Form includes a clear submit button"
+      ],
+      "do_not_do": [
+        "Do not connect the form to a database",
+        "Do not send emails",
+        "Do not add CRM integration",
+        "Do not add advanced validation yet"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "FEATURE_003",
+      "name": "Client-side form validation",
+      "goal": "Add basic validation so visitors cannot submit incomplete or invalid required information.",
+      "done_when": [
+        "Name is required",
+        "Email is required",
+        "Email format is checked",
+        "Validation messages are clear",
+        "Invalid form submissions do not show a success state"
+      ],
+      "do_not_do": [
+        "Do not add backend validation yet",
+        "Do not store submitted data",
+        "Do not add captcha",
+        "Do not add complex multi-step form behavior"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "FEATURE_004",
+      "name": "Form submission success state",
+      "goal": "Create a simple confirmation experience after a valid form submission.",
+      "done_when": [
+        "Valid submission shows a clear success message",
+        "Success message explains that someone will follow up",
+        "Form either resets or clearly shows submission completed",
+        "No data is stored or sent externally"
+      ],
+      "do_not_do": [
+        "Do not connect Supabase",
+        "Do not send notification emails",
+        "Do not create an admin area",
+        "Do not add lead management features"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "FEATURE_005",
+      "name": "Trust and conversion content",
+      "goal": "Add simple supporting content that helps visitors feel confident submitting the form.",
+      "done_when": [
+        "Page includes a short 'How it works' section",
+        "Page explains what happens after submitting the form",
+        "Page includes at least three simple benefits or reassurance points",
+        "Page includes a brief privacy reassurance near the form"
+      ],
+      "do_not_do": [
+        "Do not add testimonials unless provided",
+        "Do not invent specific company claims",
+        "Do not add a long blog-style page",
+        "Do not add extra routes"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "FEATURE_006",
+      "name": "Visual polish and mobile responsiveness",
+      "goal": "Improve the page design so it feels professional, trustworthy, and easy to use on all screen sizes.",
+      "done_when": [
+        "Spacing and typography are polished",
+        "Primary CTA button is visually clear",
+        "Form is easy to use on mobile",
+        "Page has a clean real estate landing page feel",
+        "Basic accessibility is considered, including labels and readable contrast"
+      ],
+      "do_not_do": [
+        "Do not redesign into a multi-page website",
+        "Do not add heavy animations",
+        "Do not add large media assets unless approved",
+        "Do not add unrelated sections"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "FEATURE_007",
+      "name": "Optional backend lead storage",
+      "goal": "If approved later, connect the form to Supabase so submitted leads are stored securely.",
+      "done_when": [
+        "Supabase project details are configured through environment variables",
+        "Leads table exists with approved fields",
+        "Valid form submissions are saved to Supabase",
+        "User still sees a clear success or error message",
+        "No secrets are exposed in the frontend"
+      ],
+      "do_not_do": [
+        "Do not build this unless explicitly approved",
+        "Do not hardcode Supabase keys",
+        "Do not add authentication unless separately approved",
+        "Do not build a CRM dashboard",
+        "Do not send automated emails unless separately approved"
+      ],
+      "status": "pending"
+    }
+  ],
+  "approvedPlan": true,
+  "lastCommand": "/approveidea",
+  "lastQuestion": null,
+  "lastAnswer": null,
+  "lastChangeRequest": null,
+  "lastChangeImpact": null,
+  "designChecklistApproved": false,
+  "lastDesignChecklistFile": null,
+  "lastClaudeReviewFile": null,
+  "lastFinalDecisionFile": null,
+  "updatedAt": "2026-05-17T22:19:34.091Z",
+  "localPath": "/home/ubuntu/ai-builds/lead-revive-test-12"
+}

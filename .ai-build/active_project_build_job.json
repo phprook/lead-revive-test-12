@@ -1,0 +1,10 @@
+{
+  "projectName": "lead-revive-test-12",
+  "pid": 86134,
+  "logFile": "/home/ubuntu/ai-builds/lead-revive-test-12/.ai-build/logs/build-project-active-20260517221954.log",
+  "status": "running",
+  "startedAt": "2026-05-17T22:19:54.157Z",
+  "currentFeatureId": "FEATURE_001",
+  "currentFeatureName": "Basic landing page shell",
+  "updatedAt": "2026-05-17T22:19:54.162Z"
+}

@@ -1,0 +1,51 @@
+BuildProjectActive log created: /home/ubuntu/ai-builds/lead-revive-test-12/.ai-build/logs/build-project-active-20260517221954.log
+Project: lead-revive-test-12
+BuildProjectActive started
+Project: lead-revive-test-12
+
+Building feature: FEATURE_001 - Basic landing page shell
+
+=== CLAUDE BUILD ===
+claude -p --permission-mode bypassPermissions < .ai-build/ACTIVE_BUILD_PROMPT.md
+FEATURE_001 is built. The landing page shell now has a real estate-focused hero (headline, explanation, dual CTAs), a secondary CTA band, header/footer, and responsive Tailwind layout. No form, backend, auth, or extra routes added. `next build` passes cleanly and the report is at `.ai-build/last_build_report.md`.
+
+
+=== NPM BUILD ===
+npm run build
+
+> lead-revive-test-12@0.1.0 build
+> next build
+
+▲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 7.2s
+  Running TypeScript ...
+  Finished TypeScript in 4.4s ...
+  Collecting page data using 1 worker ...
+  Generating static pages using 1 worker (0/4) ...
+  Generating static pages using 1 worker (1/4) 
+  Generating static pages using 1 worker (2/4) 
+  Generating static pages using 1 worker (3/4) 
+✓ Generating static pages using 1 worker (4/4) in 240ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+
+
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/ubuntu/ai-builds/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/ubuntu/ai-builds/lead-revive-test-12/package-lock.json
+
+
+
+=== GIT COMMIT/PUSH ===
+git add -A && git commit -m "Build FEATURE_001" || true && git push || true
