@@ -14,20 +14,20 @@ PROJECT IDEA: Build a simple real estate lead follow-up landing page with a head
 
 CURRENT FEATURE:
 {
-  "id": "FEATURE_004",
-  "name": "Form submission success state",
-  "goal": "Create a simple confirmation experience after a valid form submission.",
+  "id": "FEATURE_005",
+  "name": "Trust and conversion content",
+  "goal": "Add simple supporting content that helps visitors feel confident submitting the form.",
   "done_when": [
-    "Valid submission shows a clear success message",
-    "Success message explains that someone will follow up",
-    "Form either resets or clearly shows submission completed",
-    "No data is stored or sent externally"
+    "Page includes a short 'How it works' section",
+    "Page explains what happens after submitting the form",
+    "Page includes at least three simple benefits or reassurance points",
+    "Page includes a brief privacy reassurance near the form"
   ],
   "do_not_do": [
-    "Do not connect Supabase",
-    "Do not send notification emails",
-    "Do not create an admin area",
-    "Do not add lead management features"
+    "Do not add testimonials unless provided",
+    "Do not invent specific company claims",
+    "Do not add a long blog-style page",
+    "Do not add extra routes"
   ],
   "status": "pending"
 }
@@ -109,7 +109,7 @@ FULL ROADMAP:
       "Do not create an admin area",
       "Do not add lead management features"
     ],
-    "status": "pending"
+    "status": "completed"
   },
   {
     "id": "FEATURE_005",

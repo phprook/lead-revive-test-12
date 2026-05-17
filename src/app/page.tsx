@@ -51,9 +51,162 @@ export default function Home() {
           </p>
         </section>
 
+        <section className="border-t border-slate-200/60 dark:border-slate-800/60">
+          <div className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-20">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+                Why agents choose Lead Revive
+              </h2>
+              <p className="mt-4 text-base text-slate-600 dark:text-slate-300">
+                A simple, low-pressure way to get more out of the contacts
+                you already have.
+              </p>
+            </div>
+
+            <ul className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-3">
+              <li className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                <div
+                  aria-hidden="true"
+                  className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-900"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-5 w-5"
+                  >
+                    <path d="M12 2v4" />
+                    <path d="M12 18v4" />
+                    <path d="m4.93 4.93 2.83 2.83" />
+                    <path d="m16.24 16.24 2.83 2.83" />
+                    <path d="M2 12h4" />
+                    <path d="M18 12h4" />
+                    <path d="m4.93 19.07 2.83-2.83" />
+                    <path d="m16.24 7.76 2.83-2.83" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold">No tech setup</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                  You don&apos;t need new tools or software. We work with what
+                  you already use to manage your contacts.
+                </p>
+              </li>
+              <li className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                <div
+                  aria-hidden="true"
+                  className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-900"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-5 w-5"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold">Quick response</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                  A real estate specialist gets back to you within one business
+                  day — not a robot, and not a week from now.
+                </p>
+              </li>
+              <li className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                <div
+                  aria-hidden="true"
+                  className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-900"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-5 w-5"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold">No pressure</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                  It&apos;s a friendly conversation. No commitments, no hard
+                  sell — just clear next steps you can take or leave.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section
+          id="how-it-works"
+          className="border-t border-slate-200/60 bg-white dark:border-slate-800/60 dark:bg-slate-950"
+        >
+          <div className="mx-auto w-full max-w-5xl px-6 py-16 sm:py-20">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+                How it works
+              </h2>
+              <p className="mt-4 text-base text-slate-600 dark:text-slate-300">
+                Three simple steps from filling out the form to your next
+                conversation.
+              </p>
+            </div>
+
+            <ol className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-3">
+              <li className="rounded-2xl border border-slate-200 p-6 dark:border-slate-800">
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white dark:bg-white dark:text-slate-900">
+                  1
+                </span>
+                <h3 className="mt-4 text-lg font-semibold">
+                  Share a few details
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                  Fill out the short form below with your name, email, and what
+                  you&apos;re hoping to accomplish.
+                </p>
+              </li>
+              <li className="rounded-2xl border border-slate-200 p-6 dark:border-slate-800">
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white dark:bg-white dark:text-slate-900">
+                  2
+                </span>
+                <h3 className="mt-4 text-lg font-semibold">
+                  We review your goals
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                  A real estate specialist looks at what you&apos;ve shared and
+                  prepares a tailored follow-up plan.
+                </p>
+              </li>
+              <li className="rounded-2xl border border-slate-200 p-6 dark:border-slate-800">
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white dark:bg-white dark:text-slate-900">
+                  3
+                </span>
+                <h3 className="mt-4 text-lg font-semibold">
+                  We reach out to you
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                  Within one business day, we&apos;ll contact you to walk
+                  through the plan and answer any questions.
+                </p>
+              </li>
+            </ol>
+          </div>
+        </section>
+
         <section
           id="get-started"
-          className="border-t border-slate-200/60 bg-white dark:border-slate-800/60 dark:bg-slate-950"
+          className="border-t border-slate-200/60 dark:border-slate-800/60"
         >
           <div className="mx-auto flex w-full max-w-4xl flex-col items-center px-6 py-16 text-center sm:py-20">
             <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
@@ -61,9 +214,16 @@ export default function Home() {
             </h2>
             <p className="mt-4 max-w-xl text-base text-slate-600 dark:text-slate-300">
               Request a free consultation. We&apos;ll review your existing
-              contacts and outline the fastest path to your next deal.
+              contacts and outline the fastest path to your next deal. After
+              you submit the form, a specialist will email or call you within
+              one business day.
             </p>
             <LeadForm />
+            <p className="mt-4 max-w-xl text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+              Your information is kept private. We&apos;ll only use it to
+              follow up about your request — we don&apos;t sell or share your
+              details with third parties.
+            </p>
           </div>
         </section>
       </main>
