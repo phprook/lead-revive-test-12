@@ -168,3 +168,113 @@ Route (app)
 
 === GIT COMMIT/PUSH ===
 git add -A && git commit -m "Build FEATURE_002" || true && git push || true
+[main 770111d] Build FEATURE_002
+ 7 files changed, 277 insertions(+), 68 deletions(-)
+ create mode 100644 src/app/LeadForm.tsx
+
+To https://github.com/phprook/lead-revive-test-12.git
+   ccb1e6d..770111d  main -> main
+
+
+=== VERCEL DEPLOY ===
+vercel deploy --yes || true
+https://lead-revive-test-12-8fr2a3jiy-esign-america.vercel.app
+Retrieving project…
+Deploying esign-america/lead-revive-test-12
+Uploading [--------------------] (0.0B/29.9KB)
+Uploading [=====---------------] (8.3KB/29.9KB)
+Uploading [==============------] (21.4KB/29.9KB)
+Uploading [=================---] (25.6KB/29.9KB)
+Uploading [====================] (29.9KB/29.9KB)
+Inspect: https://vercel.com/esign-america/lead-revive-test-12/9vBbsjfVxpfVc2QTMFqMaUhWVESC [2s]
+Preview: https://lead-revive-test-12-8fr2a3jiy-esign-america.vercel.app [2s]
+Building...
+Building...
+Building: Running build in Washington, D.C., USA (East) – iad1
+Building: Build machine configuration: 4 cores, 8 GB
+Building: Retrieving list of deployment files...
+Building: Downloading 28 deployment files...
+Building: Restored build cache from previous deployment (Drnown6LZgYmdTHpcRg5dUeS3oiL)
+Building: Running "vercel build"
+Building: Vercel CLI 53.3.2
+Building: Installing dependencies...
+Building: up to date in 827ms
+Building: 146 packages are looking for funding
+Building: run `npm fund` for details
+Building: Detected Next.js version: 16.2.6
+Building: Running "npm run build"
+Building: > lead-revive-test-12@0.1.0 build
+Building: > next build
+Building: Applying modifyConfig from Vercel
+Building: ▲ Next.js 16.2.6 (Turbopack)
+Building: Creating an optimized production build ...
+Building: ✓ Compiled successfully in 2.8s
+Building: Running TypeScript ...
+Building: Finished TypeScript in 2.2s ...
+Building: Collecting page data using 3 workers ...
+Building: Generating static pages using 3 workers (0/4) ...
+Building: Generating static pages using 3 workers (1/4)
+Building: Generating static pages using 3 workers (2/4)
+Building: Generating static pages using 3 workers (3/4)
+Building: ✓ Generating static pages using 3 workers (4/4) in 142ms
+Building: Finalizing page optimization ...
+Building: Running onBuildComplete from Vercel
+Building: Route (app)
+Building: ┌ ○ /
+Building: └ ○ /_not-found
+Building: ○  (Static)  prerendered as static content
+Building: Build Completed in /vercel/output [8s]
+Building: Deploying outputs...
+[2K[1A[2K[GPreview: https://lead-revive-test-12-8fr2a3jiy-esign-america.vercel.app [18s]
+Completing...
+To deploy to production (lead-revive-test-12.vercel.app), run `vercel --prod`
+
+Completed feature: FEATURE_002 - Lead capture form UI
+Moved to next feature: FEATURE_003 - Client-side form validation
+
+Building feature: FEATURE_003 - Client-side form validation
+
+=== CLAUDE BUILD ===
+claude -p --permission-mode bypassPermissions < .ai-build/ACTIVE_BUILD_PROMPT.md
+FEATURE_003 built: `src/app/LeadForm.tsx` now validates Name (required), Email (required + regex format) on submit, surfaces inline messages with `role="alert"` and `aria-describedby`, and returns early on invalid input so no success state is shown. Phone and message stay optional. `tsc --noEmit` and `npm run lint` both pass. Report written to `.ai-build/last_build_report.md`.
+
+
+=== NPM BUILD ===
+npm run build
+
+> lead-revive-test-12@0.1.0 build
+> next build
+
+▲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 7.3s
+  Running TypeScript ...
+  Finished TypeScript in 4.5s ...
+  Collecting page data using 1 worker ...
+  Generating static pages using 1 worker (0/4) ...
+  Generating static pages using 1 worker (1/4) 
+  Generating static pages using 1 worker (2/4) 
+  Generating static pages using 1 worker (3/4) 
+✓ Generating static pages using 1 worker (4/4) in 233ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+
+
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/ubuntu/ai-builds/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/ubuntu/ai-builds/lead-revive-test-12/package-lock.json
+
+
+
+=== GIT COMMIT/PUSH ===
+git add -A && git commit -m "Build FEATURE_003" || true && git push || true
