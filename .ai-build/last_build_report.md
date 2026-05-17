@@ -1,43 +1,80 @@
-# Build Report — FEATURE_005: Trust and conversion content
+# Build Report — FEATURE_006: Visual polish and mobile responsiveness
 
 **Status:** complete
 **Date:** 2026-05-17
 
-## What was built
+## Summary
+Polished the existing landing page into a more professional, trust-inspiring
+real estate experience and tightened mobile usability. No new sections, routes,
+or backend behavior were added.
 
-Added supporting content to `src/app/page.tsx` so visitors better understand the process and feel confident submitting the form. No new routes, no testimonials, no invented claims.
+## Changes
 
-## Files changed
-- **Edited:** `src/app/page.tsx` — added three new content blocks between the hero and the existing form section, plus a post-submission explanation and a privacy line near the form.
+### `src/app/globals.css`
+- Switched body font from `Arial, Helvetica, sans-serif` to the already-imported
+  Geist variable (the page was loading Geist but not using it).
+- Enabled `scroll-behavior: smooth` and a global `scroll-margin-top` so the
+  in-page `#how-it-works` / `#get-started` anchors land below the sticky header.
+- Bumped light/dark foreground tones for more pleasing contrast.
 
-## Content added
-1. **"Why agents choose Lead Revive"** — three reassurance cards:
-   - No tech setup — works with existing contacts/tools.
-   - Quick response — specialist replies within one business day.
-   - No pressure — friendly conversation, no commitments.
-2. **"How it works"** — a three-step numbered list:
-   1. Share a few details.
-   2. We review your goals.
-   3. We reach out to you.
-   The existing hero CTA "See how it works" already links to `#how-it-works`, which now resolves to this section.
-3. **Post-submission explanation** — a sentence above the form making it explicit that a specialist will email or call within one business day.
-4. **Privacy reassurance** — a short line directly below the form: information is kept private and not sold or shared.
+### `src/app/page.tsx`
+- Introduced a consistent **blue-600** brand color for the primary CTA, badge
+  accents, and numbered step bullets so the main action is unmistakable against
+  the secondary outline button.
+- Header is now sticky with a translucent backdrop blur and includes a small
+  inline house SVG next to the wordmark — a quick visual signal that this is
+  real estate, no large media asset added.
+- Replaced solid slate icon chips with subtle blue-tinted icon chips for the
+  benefit cards (lighter weight, more "premium landing page" feel).
+- Tightened mobile spacing: hero padding goes `py-14 → py-24 → py-32` across
+  breakpoints, horizontal padding drops from `px-6` to `px-5` on phones,
+  headline uses `text-balance` and a slightly smaller mobile size to avoid
+  awkward wrapping.
+- Bumped meta text contrast (`slate-500 → slate-600` in light mode) to
+  improve readability of legal/disclosure copy.
+- Added `id="top"` on `<main>` so the brand logo can scroll-to-top.
 
-## Done-when checklist
-- [x] Page includes a short 'How it works' section.
-- [x] Page explains what happens after submitting the form.
-- [x] Page includes at least three simple benefits or reassurance points.
-- [x] Page includes a brief privacy reassurance near the form.
+### `src/app/LeadForm.tsx`
+- Submit button now uses the **blue-600** brand color with a soft shadow ring
+  so it visually pops as the primary CTA.
+- Inputs grew from `h-11` → `h-12` (48px touch target) and gained a blue
+  focus ring matching the brand color.
+- Added a small required-field asterisk (`*`) to Full name and Email labels
+  for clearer accessibility expectations; phone is marked optional inline.
+- Phone field gets `inputMode="tel"`.
+- Label text moved to `slate-800` for stronger contrast against the white card.
+- Added a small reassurance line under the submit button: "Takes under a
+  minute · We'll never spam you".
+- Card itself gets a slightly stronger shadow + ring for a polished, elevated
+  appearance.
 
-## Do-not-do checklist (respected)
-- [x] No testimonials added.
-- [x] No specific company claims invented.
-- [x] No long blog-style content.
-- [x] No extra routes added.
+## Accessibility checks
+- All inputs have visible `<label>` elements with `htmlFor` bound to their IDs.
+- Error messages use `role="alert"` and `aria-describedby` (unchanged).
+- Required fields are flagged both visually (asterisk) and via existing
+  validation messaging.
+- Focus rings on every interactive element use `focus-visible` with explicit
+  ring offsets, including against the new gradient backgrounds.
+- Color contrast: primary body text is `slate-600/slate-300`; primary blue
+  (`#2563eb`) on white meets WCAG AA for the CTA.
+- Decorative SVGs use `aria-hidden="true"`.
 
-## Build verification
-- `npx next build` → compiled successfully (Next.js 16.2.6, TypeScript clean, static pages generated).
+## Mobile checks
+- Header collapses gracefully (tagline hides under `sm:`).
+- Hero CTAs stack full-width on mobile, side-by-side on `sm+`.
+- Form is single-column under `sm` and two-column from `sm+`; inputs reach
+  48px height for comfortable tapping; input/text font-size stays at 16px
+  (`text-base`) to avoid iOS Safari auto-zoom.
+- Padding reduces on small screens (`px-5`) while preserving generous reading
+  width on desktop (`max-w-6xl`).
 
-## Notes for FEATURE_006
-- Layout currently uses Tailwind with a slate palette and rounded cards. Visual polish should keep this base consistent and focus on typography rhythm, CTA emphasis, and mobile spacing.
-- The form lives in `src/app/LeadForm.tsx`; the page surrounding it is `src/app/page.tsx`.
+## Verification
+- `npx next build` — compiles successfully (no errors).
+- `npx tsc --noEmit` — clean.
+
+## Roadmap discipline
+- No new routes, backend, database, auth, email, or CRM integrations.
+- No heavy animations — only subtle color/shadow transitions on hover.
+- No large media assets — only inline SVG icons.
+- No new sections; existing FEATURE_005 trust content preserved as-is and
+  visually refined.

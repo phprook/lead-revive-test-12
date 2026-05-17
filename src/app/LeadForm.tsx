@@ -61,7 +61,7 @@ export default function LeadForm() {
       <div
         role="status"
         aria-live="polite"
-        className="mt-10 w-full max-w-xl rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-left shadow-sm dark:border-emerald-900 dark:bg-emerald-950/40 sm:p-8"
+        className="mt-8 w-full max-w-xl rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-left shadow-md dark:border-emerald-900 dark:bg-emerald-950/40 sm:mt-10 sm:p-8"
       >
         <div className="flex items-start gap-4">
           <span
@@ -104,11 +104,11 @@ export default function LeadForm() {
   }
 
   const inputBaseClasses =
-    "mt-2 block h-11 w-full rounded-lg border bg-white px-3 text-base text-slate-900 shadow-sm transition-colors placeholder:text-slate-400 focus:outline-none focus:ring-2 dark:bg-slate-950 dark:text-slate-100 dark:placeholder:text-slate-500";
+    "mt-2 block h-12 w-full rounded-lg border bg-white px-3.5 text-base text-slate-900 shadow-sm transition-colors placeholder:text-slate-400 focus:outline-none focus:ring-2 dark:bg-slate-950 dark:text-slate-100 dark:placeholder:text-slate-500";
   const inputNormalClasses =
-    "border-slate-300 focus:border-slate-500 focus:ring-slate-300 dark:border-slate-700 dark:focus:border-slate-400 dark:focus:ring-slate-700";
+    "border-slate-300 focus:border-blue-500 focus:ring-blue-200 dark:border-slate-700 dark:focus:border-blue-400 dark:focus:ring-blue-900/60";
   const inputErrorClasses =
-    "border-red-500 focus:border-red-500 focus:ring-red-300 dark:border-red-500 dark:focus:border-red-400 dark:focus:ring-red-900";
+    "border-red-500 focus:border-red-500 focus:ring-red-200 dark:border-red-500 dark:focus:border-red-400 dark:focus:ring-red-900";
 
   const nameError = showError("name");
   const emailError = showError("email");
@@ -116,16 +116,19 @@ export default function LeadForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-10 w-full max-w-xl rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-8"
+      className="mt-8 w-full max-w-xl rounded-2xl border border-slate-200 bg-white p-5 text-left shadow-md ring-1 ring-black/[0.02] dark:border-slate-800 dark:bg-slate-900 dark:ring-white/[0.02] sm:mt-10 sm:p-8"
       noValidate
     >
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
           <label
             htmlFor="lead-name"
-            className="block text-sm font-medium text-slate-700 dark:text-slate-200"
+            className="block text-sm font-medium text-slate-800 dark:text-slate-200"
           >
             Full name
+            <span aria-hidden="true" className="ml-0.5 text-red-600 dark:text-red-400">
+              *
+            </span>
           </label>
           <input
             id="lead-name"
@@ -153,9 +156,12 @@ export default function LeadForm() {
         <div>
           <label
             htmlFor="lead-email"
-            className="block text-sm font-medium text-slate-700 dark:text-slate-200"
+            className="block text-sm font-medium text-slate-800 dark:text-slate-200"
           >
             Email
+            <span aria-hidden="true" className="ml-0.5 text-red-600 dark:text-red-400">
+              *
+            </span>
           </label>
           <input
             id="lead-email"
@@ -183,14 +189,18 @@ export default function LeadForm() {
         <div>
           <label
             htmlFor="lead-phone"
-            className="block text-sm font-medium text-slate-700 dark:text-slate-200"
+            className="block text-sm font-medium text-slate-800 dark:text-slate-200"
           >
-            Phone
+            Phone{" "}
+            <span className="font-normal text-slate-500 dark:text-slate-400">
+              (optional)
+            </span>
           </label>
           <input
             id="lead-phone"
             name="phone"
             type="tel"
+            inputMode="tel"
             autoComplete="tel"
             placeholder="(555) 123-4567"
             value={phone}
@@ -202,7 +212,7 @@ export default function LeadForm() {
         <div className="sm:col-span-2">
           <label
             htmlFor="lead-message"
-            className="block text-sm font-medium text-slate-700 dark:text-slate-200"
+            className="block text-sm font-medium text-slate-800 dark:text-slate-200"
           >
             What are you looking for?{" "}
             <span className="font-normal text-slate-500 dark:text-slate-400">
@@ -216,17 +226,20 @@ export default function LeadForm() {
             placeholder="Tell us a bit about your goals or the kind of leads you'd like to revive."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="mt-2 block w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 shadow-sm transition-colors placeholder:text-slate-400 focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-300 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-slate-400 dark:focus:ring-slate-700"
+            className="mt-2 block w-full rounded-lg border border-slate-300 bg-white px-3.5 py-3 text-base text-slate-900 shadow-sm transition-colors placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-blue-400 dark:focus:ring-blue-900/60"
           />
         </div>
       </div>
 
       <button
         type="submit"
-        className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-full bg-slate-900 px-8 text-base font-semibold text-white shadow-sm transition-colors hover:bg-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 dark:focus-visible:ring-white"
+        className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-full bg-blue-600 px-8 text-base font-semibold text-white shadow-md shadow-blue-600/20 transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 dark:shadow-blue-500/20 dark:focus-visible:ring-offset-slate-900"
       >
         Request my consultation
       </button>
+      <p className="mt-3 text-center text-xs text-slate-500 dark:text-slate-400">
+        Takes under a minute · We&apos;ll never spam you
+      </p>
     </form>
   );
 }
