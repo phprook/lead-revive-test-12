@@ -1,7 +1,7 @@
 {
   "projectName": "lead-revive-test-12",
   "projectIdea": "Build a simple real estate lead follow-up landing page with a headline, short explanation, lead form, and clear call to action",
-  "status": "ready_for_FEATURE_007",
+  "status": "active_feature_completed",
   "currentFeatureIndex": 6,
   "features": [
     {
@@ -136,11 +136,11 @@
         "Do not build a CRM dashboard",
         "Do not send automated emails unless separately approved"
       ],
-      "status": "pending"
+      "status": "completed"
     }
   ],
   "approvedPlan": true,
-  "lastCommand": "/buildprojectactive:nextfeature",
+  "lastCommand": "/buildprojectactive",
   "lastQuestion": null,
   "lastAnswer": null,
   "lastChangeRequest": null,
@@ -149,11 +149,15 @@
   "lastDesignChecklistFile": null,
   "lastClaudeReviewFile": null,
   "lastFinalDecisionFile": null,
-  "updatedAt": "2026-05-17T22:37:23.430Z",
+  "updatedAt": "2026-05-17T22:50:13.657Z",
   "localPath": "/home/ubuntu/ai-builds/lead-revive-test-12",
   "lastActiveBuild": {
-    "feature": "FEATURE_006",
-    "featureName": "Visual polish and mobile responsiveness",
-    "completedAt": "2026-05-17T22:37:23.430Z"
+    "feature": "FEATURE_007",
+    "featureName": "Optional backend lead storage",
+    "completedAt": "2026-05-17T22:41:53.799Z"
+  },
+  "supabase": {
+    "projectRef": "nkbmykjqnpdfqazzxlft",
+    "connectedAt": "2026-05-17T22:50:13.657Z"
   }
 }
