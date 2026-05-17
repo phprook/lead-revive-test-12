@@ -1,3 +1,5 @@
+import LeadForm from "./LeadForm";
+
 export default function Home() {
   return (
     <div className="flex flex-1 flex-col bg-gradient-to-b from-slate-50 to-white font-sans text-slate-900 dark:from-slate-950 dark:to-slate-900 dark:text-slate-100">
@@ -61,12 +63,7 @@ export default function Home() {
               Request a free consultation. We&apos;ll review your existing
               contacts and outline the fastest path to your next deal.
             </p>
-            <a
-              href="#get-started"
-              className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-slate-900 px-8 text-base font-semibold text-white shadow-sm transition-colors hover:bg-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 dark:focus-visible:ring-white"
-            >
-              Request my consultation
-            </a>
+            <LeadForm />
           </div>
         </section>
       </main>

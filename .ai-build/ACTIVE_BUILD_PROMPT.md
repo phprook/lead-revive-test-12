@@ -14,22 +14,22 @@ PROJECT IDEA: Build a simple real estate lead follow-up landing page with a head
 
 CURRENT FEATURE:
 {
-  "id": "FEATURE_001",
-  "name": "Basic landing page shell",
-  "goal": "Create the first public real estate lead follow-up landing page with a clear hero section and call to action.",
+  "id": "FEATURE_002",
+  "name": "Lead capture form UI",
+  "goal": "Add a simple lead form to collect visitor contact information.",
   "done_when": [
-    "Homepage loads successfully",
-    "Page has a strong real estate-focused headline",
-    "Page has a short explanation of what the visitor should do",
-    "Page has a visible primary call-to-action area",
-    "Layout works on desktop and mobile at a basic level"
+    "Form appears clearly on the landing page",
+    "Form includes full name field",
+    "Form includes email field",
+    "Form includes phone field",
+    "Form includes an optional message or interest field",
+    "Form includes a clear submit button"
   ],
   "do_not_do": [
-    "Do not add a working lead form yet",
-    "Do not add backend storage",
-    "Do not add login",
-    "Do not add dashboard",
-    "Do not add extra pages"
+    "Do not connect the form to a database",
+    "Do not send emails",
+    "Do not add CRM integration",
+    "Do not add advanced validation yet"
   ],
   "status": "pending"
 }
@@ -54,7 +54,7 @@ FULL ROADMAP:
       "Do not add dashboard",
       "Do not add extra pages"
     ],
-    "status": "pending"
+    "status": "completed"
   },
   {
     "id": "FEATURE_002",

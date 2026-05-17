@@ -1,51 +1,49 @@
-# Build Report — FEATURE_001: Basic landing page shell
+# Build Report — FEATURE_002: Lead capture form UI
 
 **Status:** complete
 **Date:** 2026-05-17
 
 ## What was built
 
-Replaced the Next.js starter `src/app/page.tsx` with a real estate lead
-follow-up landing page shell, and updated the page metadata in
-`src/app/layout.tsx`.
-
-### Page sections
-1. **Header** — brand mark ("Lead Revive") and tagline.
-2. **Hero**
-   - Eyebrow badge: "For agents and brokerages"
-   - Headline: *"Reignite cold leads and book more showings — without lifting a finger."*
-   - Short explanation telling the visitor what to do next.
-   - Primary CTA: "Get my free follow-up plan"
-   - Secondary CTA: "See how it works"
-   - Reassurance microcopy (no credit card, 1-day response, confidential).
-3. **Secondary CTA band** — repeats the primary CTA further down the page.
-4. **Footer** — copyright + positioning line.
-
-### Metadata
-- Page title and description updated to reflect the new product.
-
-## Done-when checklist
-- [x] Homepage loads successfully (`next build` passes, `/` prerendered as static).
-- [x] Strong real estate-focused headline present.
-- [x] Short explanation of what the visitor should do.
-- [x] Visible primary CTA area (two CTAs, hero + secondary band).
-- [x] Layout works on desktop and mobile (responsive Tailwind: stacked CTAs / full-width buttons on small screens, side-by-side on `sm:` and up; max-width containers; readable typography scale).
-
-## Do-not-do checklist (respected)
-- [x] No lead form added.
-- [x] No backend / database.
-- [x] No login.
-- [x] No dashboard.
-- [x] No extra routes — only `/` exists.
+Added a lead capture form to the landing page inside the existing
+`#get-started` section. The form is UI-only — submission is intercepted via
+`preventDefault` so nothing happens on click. No validation, storage,
+emailing, or CRM behavior was added (those belong to FEATURE_003, FEATURE_004,
+and FEATURE_007 respectively).
 
 ## Files changed
-- `src/app/page.tsx` — full rewrite.
-- `src/app/layout.tsx` — metadata title/description updated.
+- **New:** `src/app/LeadForm.tsx` — client component containing the form.
+- **Edited:** `src/app/page.tsx` — imported `LeadForm` and replaced the placeholder "Request my consultation" anchor button inside the `#get-started` section with `<LeadForm />`.
+
+## Form fields
+| Field                       | Element / type | Notes                                       |
+|-----------------------------|----------------|---------------------------------------------|
+| Full name                   | `input[type=text]`  | `autocomplete="name"`                   |
+| Email                       | `input[type=email]` | `autocomplete="email"`                  |
+| Phone                       | `input[type=tel]`   | `autocomplete="tel"`                    |
+| What are you looking for?   | `textarea`          | Labeled `(optional)` — interest/message |
+| Submit                      | `button[type=submit]` | "Request my consultation"             |
+
+All inputs have associated `<label htmlFor>` for accessibility, with focus
+rings and dark-mode styling matching the rest of the page.
+
+## Done-when checklist
+- [x] Form appears clearly on the landing page (inside the "Ready to revive your pipeline?" section).
+- [x] Full name field present.
+- [x] Email field present.
+- [x] Phone field present.
+- [x] Optional message / interest field present (textarea, labeled `(optional)`).
+- [x] Clear submit button present.
+
+## Do-not-do checklist (respected)
+- [x] No database connection.
+- [x] No emails sent.
+- [x] No CRM integration.
+- [x] No advanced validation (the form is UI-only; submission is a no-op via `preventDefault`).
 
 ## Build verification
-- `npm run build` → ✓ Compiled successfully, TypeScript clean, 4 static pages generated.
+- `npx next build` → ✓ Compiled successfully, TypeScript clean, `/` prerendered as static.
 
-## Notes for next feature (FEATURE_002)
-- A `#get-started` anchor target exists on the secondary CTA section; this is
-  where the lead capture form will naturally slot in.
-- No styling system additions were needed beyond the existing Tailwind v4 setup.
+## Notes for next feature (FEATURE_003)
+- The form is a client component (`"use client"`), so adding stateful validation will be straightforward — wire `useState` per field and validate inside the existing `onSubmit` handler before the `preventDefault`-only path.
+- Inputs already carry stable `id`s (`lead-name`, `lead-email`, `lead-phone`, `lead-message`) suitable for `aria-describedby` error linkage when validation is added.
